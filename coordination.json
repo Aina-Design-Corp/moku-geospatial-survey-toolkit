@@ -1,6 +1,6 @@
 {
   "$schema": "../mokulearner-node/docs/general-specs/coordination.schema.json",
-  "repo": "moku-geospatial-survey_toolkit",
+  "repo": "moku-geospatial-survey-toolkit",
   "role": "Implementation of the community-monitoring contract (huikoeaina docs/contracts/community-monitoring.md): the monitoring record schema, validator, intake, forms, and build that consumers run in their own repositories and CI. Publishes nothing itself; holds no registry of record. Governed by huikoeaina's contract pen; ruled 2026-10-12 (mokunet-org change 2026-10-12-community-monitoring-toolkit).",
   "managedBy": "huikoeaina",
   "updated": "2026-10-12",
