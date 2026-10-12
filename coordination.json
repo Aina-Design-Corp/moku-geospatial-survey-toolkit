@@ -1,0 +1,39 @@
+{
+  "$schema": "../mokulearner-node/docs/general-specs/coordination.schema.json",
+  "repo": "moku-geospatial-survey_toolkit",
+  "role": "Implementation of the community-monitoring contract (huikoeaina docs/contracts/community-monitoring.md): the monitoring record schema, validator, intake, forms, and build that consumers run in their own repositories and CI. Publishes nothing itself; holds no registry of record. Governed by huikoeaina's contract pen; ruled 2026-10-12 (mokunet-org change 2026-10-12-community-monitoring-toolkit).",
+  "managedBy": "huikoeaina",
+  "updated": "2026-10-12",
+  "spec": "../mokulearner-node/docs/general-specs/CROSS-REPO-COORDINATION.md",
+  "reconciledBy": "mokunet-org/leo",
+  "provides": [
+    {
+      "id": "monitoring.projection.read",
+      "kind": "file",
+      "surface": "dist/registry/<program>.published.json — the published-manifest projection a consumer's build emits: every listed record with gated fields (story, outcomes) stripped unless published, submitter contact never; shape per community-monitoring.md §6, row source for mokulearner-node's planned /api/services/community/outcomes",
+      "auth": "public",
+      "status": "planned",
+      "version": "v1",
+      "consumers": [],
+      "note": "0.1.0 emits the kuleana-portal v0.3 projection unchanged (compat check: byte-for-byte against the Green Fee Commons Report). The contract's §2 shape lands in 0.2 behind a compatibility profile. Consumers declare once the projection is in the contract's shape; kuleana is the first, in its own manifest, when it pins the toolkit."
+    }
+  ],
+  "consumes": [
+    {
+      "id": "community-monitoring.contract",
+      "from": "huikoeaina",
+      "expects": "docs/contracts/community-monitoring.md — record shape (§2), program document (§3), mapping rules (§4), publication gate (§5), outputs (§6); shapes change there first, then here, then in consumers",
+      "pinnedVersion": "v1",
+      "status": "planned",
+      "note": "Contract proposed 2026-10-12, ratification owed by huikoeaina (its §7 open items: moku key form, cross-moku list, outcomes-update path, training-role mapping). 0.1.0 implements the pre-contract v0.3 shape it was lifted with; 0.2 implements §2."
+    }
+  ],
+  "acknowledges": [
+    {
+      "id": "2026-10-12-community-monitoring-toolkit",
+      "from": "mokunet-org",
+      "status": "applied",
+      "note": "Repository created 2026-10-12 under the steward's final name; manifest seeded; 0.1.0 = gates lifted from kuleana-portal with the compat check. Owed elsewhere: repo-enum value (mokulearner-node), §7 rows (mokunet-org)."
+    }
+  ]
+}

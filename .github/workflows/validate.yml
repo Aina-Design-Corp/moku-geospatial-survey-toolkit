@@ -1,0 +1,51 @@
+# The toolkit's own gates, and the proof that it still reproduces its first
+# consumer. validate + build run on every push; compat clones the Green Fee
+# Commons Report (public) and requires a byte-for-byte match of its
+# projection and pages. No deploy job: the toolkit publishes nothing itself.
+name: toolkit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Validate registry and fixtures (schema + invariants)
+        run: npm run validate
+      - name: Build (publication gate applied)
+        run: node scripts/build.mjs
+      - name: Intake parity (csv ↔ xlsx) and cohort creation
+        run: |
+          node scripts/intake.mjs intake/samples/FY2026-attachment-a.csv --sample --json > /tmp/from-csv.json
+          node scripts/intake.mjs intake/samples/FY2026-attachment-a.xlsx --sample --json > /tmp/from-xlsx.json
+          sed -i 's/FY2026-attachment-a\.csv/SOURCE/g'  /tmp/from-csv.json
+          sed -i 's/FY2026-attachment-a\.xlsx/SOURCE/g' /tmp/from-xlsx.json
+          diff /tmp/from-csv.json /tmp/from-xlsx.json
+          node scripts/intake.mjs intake/samples/FY2027-appropriations.csv --v1 --sample --fiscal-public --write --registry /tmp/v1-registry
+          node scripts/validate.mjs --registry /tmp/v1-registry
+
+  compat:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          repository: Aina-Design-Corp/kuleana-portal
+          path: consumer/kuleana-portal
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Reproduce the Green Fee Commons Report byte for byte
+        run: bash scripts/compat.sh consumer/kuleana-portal
