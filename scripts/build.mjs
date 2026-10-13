@@ -40,12 +40,12 @@ const flag = (name, fallback) => {
 };
 const siteDir = resolve(root, flag('--site', 'site'));
 const cname = flag('--cname', null);
-const VERSION = flag('--label', 'toolkit 0.1.1 (gates lifted from the Green Fee Commons Report · rule set v0.3 · v1.0 profile)');
+const VERSION = flag('--label', 'toolkit 0.1.2 (gates lifted from the Green Fee Commons Report · rule set v0.3 · v1.0 profile)');
 const MOKU_TOTAL = 33; // the moku the Mokunet shared map holds, all islands
 // The toolkit behind this Commons Report is being generalized for community
 // monitoring under a Hui Koʻe ʻĀina contract. The footer names its repository
 // only once it exists and carries its CANON §7 row — set the address then, never before.
-const TOOLKIT_URL = null;
+const TOOLKIT_URL = 'https://github.com/Aina-Design-Corp/moku-geospatial-survey-toolkit';
 const HKA_URL = 'https://huikoeaina.ainadesign.org/';
 
 const esc = (s) => String(s)
