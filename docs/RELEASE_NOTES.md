@@ -1,5 +1,15 @@
 # Moku geospatial survey toolkit — Release Notes
 
+## 0.1.1 — 2026-10-12 (re-lifted; the lift is now a script)
+
+The Commons Report changed its pages the same day (plain language, the
+commons framing, open-source notice, the baseline use case), so the lifted
+build no longer reproduced it. `scripts/lift.py` now copies the lifted set
+from a kuleana-portal checkout and re-applies the one toolkit patch
+(consumer flags) by anchor, so a re-lift is `npm run lift` then
+`npm run compat`. Compat is green again against kuleana-portal main at
+2026-10-12 (PR #28). No change to the gates.
+
 ## 0.1.0 — 2026-10-12 (the gates, lifted and proven)
 
 First release. The validator, intake, build, schemas, fixtures, sample

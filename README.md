@@ -71,6 +71,7 @@ programs.
 npm run validate   # schema + invariants on registry/ and the fixtures
 npm run build      # validate, then render dist/ (publication gate applied)
 npm run intake -- intake/samples/FY2026-attachment-a.csv --sample   # source → draft records (dry run)
+npm run lift       # re-lift the gates from a sibling kuleana-portal checkout (python3 scripts/lift.py)
 npm run compat     # validate + rebuild the Commons Report's cohort from a sibling checkout and diff the projection
 ```
 
