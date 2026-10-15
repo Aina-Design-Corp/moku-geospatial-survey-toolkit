@@ -1,6 +1,6 @@
 {
   "name": "moku-geospatial-survey-toolkit",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "type": "module",
   "description": "Moku geospatial survey toolkit — community monitoring records by moku: schema, validator, intake, build. Governed by the Hui Koʻe ʻĀina community-monitoring contract. Zero runtime dependencies by design.",
