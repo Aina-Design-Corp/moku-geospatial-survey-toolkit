@@ -2,20 +2,20 @@
   "$schema": "../mokulearner-node/docs/general-specs/coordination.schema.json",
   "repo": "moku-geospatial-survey-toolkit",
   "role": "Implementation of the community-monitoring contract (huikoeaina docs/contracts/community-monitoring.md): the monitoring record schema, validator, intake, forms, and build that consumers run in their own repositories and CI. Publishes nothing itself; holds no registry of record. Governed by huikoeaina's contract pen; ruled 2026-10-12 (mokunet-org change 2026-10-12-community-monitoring-toolkit).",
-  "managedBy": "huikoeaina",
-  "updated": "2026-10-12",
+  "managedBy": ["huikoeaina"],
+  "updated": "2026-10-24",
   "spec": "../mokulearner-node/docs/general-specs/CROSS-REPO-COORDINATION.md",
   "reconciledBy": "mokunet-org/leo",
   "provides": [
     {
       "id": "monitoring.projection.read",
-      "kind": "file",
+      "kind": "dataset",
       "surface": "dist/registry/<program>.published.json — the published-manifest projection a consumer's build emits: every listed record with gated fields (story, outcomes) stripped unless published, submitter contact never; shape per community-monitoring.md §6, row source for mokulearner-node's planned /api/services/community/outcomes",
       "auth": "public",
       "status": "planned",
       "version": "v1",
       "consumers": [],
-      "note": "0.1.0 emits the kuleana-portal v0.3 projection unchanged (compat check: byte-for-byte against the Green Fee Commons Report). The contract's §2 shape lands in 0.2 behind a compatibility profile. Consumers declare once the projection is in the contract's shape; kuleana is the first, in its own manifest, when it pins the toolkit."
+      "note": "0.1.0 emits the kuleana-portal v0.3 projection unchanged (compat check: byte-for-byte against the Green Fee Commons Report). The contract's §2 shape lands in 0.2 behind a compatibility profile. Consumers declare once the projection is in the contract's shape; kuleana is the first, in its own manifest, when it pins the toolkit. kind is `dataset` (2026-10-24): a build-emitted JSON file is a data artifact, and `file` is not a schema kind — if node rules a file kind into the enum, this entry follows."
     }
   ],
   "consumes": [
@@ -30,10 +30,13 @@
   ],
   "acknowledges": [
     {
-      "id": "2026-10-12-community-monitoring-toolkit",
-      "from": "mokunet-org",
+      "change": "2026-10-12-community-monitoring-toolkit",
+      "domain": "governance",
+      "authorizedBy": "mokunet-org",
       "status": "applied",
-      "note": "Repository created 2026-10-12 under the steward's final name; manifest seeded; 0.1.0 = gates lifted from kuleana-portal with the compat check. Owed elsewhere: repo-enum value (mokulearner-node), §7 rows (mokunet-org)."
+      "at": "2026-10-12",
+      "by": "claude (kuleana-portal session, steward-directed); shape corrected 2026-10-24 (leo settle pass)",
+      "note": "Repository created 2026-10-12 under the steward's final name; manifest seeded; 0.1.0 = gates lifted from kuleana-portal with the compat check (0.1.5 by 2026-10-15). Repo-enum value landed (node PRs #39 + #40, 2026-10-12); §7 rows landed (org PR #43). Entry rewritten to the schema's acknowledge shape (change/domain/authorizedBy/at) — it was seeded with id/from and failed validation."
     }
   ]
 }
