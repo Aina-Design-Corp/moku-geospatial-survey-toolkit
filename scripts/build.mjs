@@ -169,6 +169,10 @@ const anyReal = cohorts.some((c) => c.sample !== true);
 // first; others may or may not involve State funding.
 const SITE = 'Kuleana';
 const SITE_TAG = 'commons reports';
+// The second Kuleana surface: the trail and park guide (repo kuleana-app),
+// linked from the home page at its interim Firebase address (CANON §7,
+// 2026-11-27). Change it here when the guide gets its own address.
+const GUIDE_URL = 'https://ainadomain.web.app/';
 const reportSlug = (c) => `${c.program ?? 'report'}-${c.cohort.toLowerCase()}`;
 const reportTitle = (c) => c.title ?? `${c.cohort} report`;
 
@@ -515,20 +519,26 @@ ${fiscalHtml}
 
 const index = page({
   title: `${SITE} · ${SITE_TAG} — each moku, known by the work done in it`,
-  description: 'One public record of each moku of Hawaiʻi, built from the work done in it — land trusts, community groups, crews, schools, families, agencies: who is doing what, where, and what comes of it, kept in common for residents and visitors. The Green Fee report is the first of the commons reports; others may or may not involve State funding.',
+  description: 'Caring for the land and water of each moku of Hawaiʻi, mountain to sea, in one public record — land trusts, community groups, crews, schools, families, agencies: who is caring for which place, what they do, and how the place responds, kept in common for residents and visitors. With the Kuleana · trail and park guide, a web app under development.',
   depth: 0,
   body: {
     header: `<h1>Each moku, known by the work done in it</h1>
-<p class="tagline">Many hands care for each moku, the district that runs from the mountain to the sea. Their
-<strong>commons reports</strong> add what they do, where, and what comes of it to one public record that keeps growing.
-The first tracks the ${listedCount} projects the State's fee on visitors paid for this year; stewards' own work and what
-they observe come next.</p>
-<p class="meta">${cohorts.length} commons report${cohorts.length === 1 ? '' : 's'} · ${listedCount} projects on record · published by Āina Design Corp</p>`,
+<p class="tagline">Many hands care for each moku, the district that runs from the mountain to the sea: its forests,
+streams, shoreline, and reefs, and the life they hold. Their <strong>commons reports</strong> add what they do, where,
+and how the land and water respond to one public record that keeps growing, so residents and visitors can see how a
+place is doing and take part in its care.</p>
+<div class="app-callout">
+<p class="app-stage">Under development</p>
+<p><a href="${GUIDE_URL}"><strong>Kuleana · trail and park guide</strong></a> — a web app, with phone apps for Android
+and iOS to follow. It finds Oʻahu's State trails and State parks by moku, so you know whose place you are walking in
+before you set out. Expect gaps while it is built.</p>
+</div>
+<p class="meta">${cohorts.length} commons report${cohorts.length === 1 ? '' : 's'} · published by Āina Design Corp</p>`,
     main: `<h2>The commons reports</h2>
 <p>A commons report is the public side of a record kept in common: who is caring for a place, what they did, what came
-of it, and where each fact came from. Some reports track State funding, as the Green Fee report does. Others will track
-a land trust's own work, a community group's season, or a watershed's monitoring, with no State funding involved.
-Every report follows the same rules and the same review.</p>
+of it, and where each fact came from. A report can follow a land trust's own work, a community group's season, or a
+watershed's monitoring; some, as the Green Fee report does, follow State funding to the places it reaches. Every report
+follows the same rules and the same review.</p>
 <div class="docs-grid">
 ${reportCards.join('\n')}
 </div>
